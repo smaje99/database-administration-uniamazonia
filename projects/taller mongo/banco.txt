@@ -1,0 +1,154 @@
+use banco
+
+db.createCollection('cliente')
+db.createCollection('transacciones')
+db.createCollection('servicios')
+
+db.cliente.insertMany([
+    {
+        name: 'Sergio',
+        surname: 'Majé',
+        dni: 99091610988,
+        gender: 'male',
+        birthdate: ISODate('1999-09-16'),
+        address: 'Calle 1 # 1 - 1',
+        email: 's.maje@udla.edu.co',
+        phone: 3125280239,
+        created_at: new Date(),
+        account: {
+            type: 'Ahorros',
+            number: 1234579952663,
+            amount: 200
+        }
+    },
+    {
+        name: 'Pepito',
+        surname: 'Perez',
+        dni: 22233445,
+        gender: 'male',
+        birthdate: ISODate('1980-08-10'),
+        address: 'Calle 1 # 1 - 1',
+        email: 'p.perez@udla.edu.co',
+        phone: 3333333,
+        created_at: new Date(),
+        account: {
+            type: 'Debito',
+            number: 9573627494272,
+            amount: 1000
+        }
+    },
+    {
+        name: ' Daniela',
+        surname: 'Carbonell',
+        dni: 10071375,
+        gender: 'female',
+        birthdate: ISODate('1999-08-28'),
+        email: 'd.carbonell@gmail.com',
+        phone: 32454657,
+        created_at: new Date(),
+        account: {
+            type: 'Ahorros',
+            number: 987556785326788,
+            amount: 100
+        }
+    }
+])
+
+db.servicios.insertMany([
+    {
+        name: 'Retiro'
+    },
+    {
+        name: 'consignación'
+    },
+    {
+        name: 'giros'
+    },
+    {
+        name: 'pago servicios'
+    }
+])
+
+db.transacciones.insertMany([
+    {
+        client: ObjectId("62bdc598a48157860f459f5e"),
+        service: ObjectId("62bdc617a48157860f459f5f"),
+        amount: 40,
+        created_at: new Date()
+    },
+    {
+        client: ObjectId("62bdc598a48157860f459f5c"),
+        service: ObjectId("62bdc617a48157860f459f61"),
+        recivier: ObjectId("62bdc598a48157860f459f5e"),
+        amount: 60,
+        created_at: new Date()
+    },
+    {
+        client: ObjectId("62bdc598a48157860f459f5d"),
+        service: ObjectId("62bdc617a48157860f459f60"),
+        amount: 200,
+        created_at: new Date()
+    }
+])
+
+
+db.cliente.find(
+    {'account.type': 'Ahorros'},
+    {name: 1, surname: 1, 'account.type': 1}
+).pretty()
+
+db.cliente.find(
+    {'account.amount': {$gt: 120}},
+    {name: 1, surname: 1, account: 1}
+).pretty()
+
+db.servicios.findOne({_id: ObjectId("62bdc617a48157860f459f5f")})
+
+db.servicios.find({name: 'giros'}).pretty()
+
+db.transacciones.find(
+    {amount: {$gte: 50}},
+    {amount: 1, created_at: 1}
+)
+
+db.transacciones.find(
+    {amount: {$gte: 50}},
+    {amount: 1, created_at: 1}
+).count()
+
+db.transacciones.find(
+    {recivier: {$exists: true}},
+    {amount: 1, created_at: 1}
+)
+
+var cursor = db.cliente.find({_id: ObjectId('62bdc598a48157860f459f5c')})
+var cliente = cursor.next()
+db.transacciones.find(
+    {client: cliente._id},
+    {created_at: 1, amount: 1, cliente: cliente.name}
+)
+
+var cursor = db.servicios.find({name: 'Retiro'})
+var servicio = cursor.next()
+db.transacciones.find(
+    {service: servicio._id},
+    {service: servicio.name, amount: 1, created_at: 1}
+)
+
+var cursorClient = db.cliente.find({_id: ObjectId("62bdc598a48157860f459f5e")})
+var cursorServico = db.servicios.find({name: 'Retiro'})
+var cliente = cursorClient.next()
+var servicio = cursorServico.next()
+db.transacciones.find(
+    {$and: [
+        {client: cliente._id},
+        {service: servicio._id}
+    ]},
+    {
+        client: cliente.name,
+        account: cliente.account,
+        service: servicio.name,
+        amount: 1,
+        created_at: 1
+    }
+)
