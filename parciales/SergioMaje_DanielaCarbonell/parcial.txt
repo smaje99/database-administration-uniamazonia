@@ -1,0 +1,202 @@
+// punto 1
+use admin
+
+db.createUser({
+    user: 'Taller',
+    pwd: 'root',
+    roles: [{
+        role: 'userAdminAnyDatabase',
+        db: 'admin'
+    }]
+})
+
+// punto 2
+use test
+
+db.auth('Taller', 'root')
+
+use ADBG1
+
+
+//punto 3
+db.createUser ({
+    user: 'cliente',
+    pwd: 'cliente',
+    roles: [{
+        role: 'readWrite',
+        db: 'ADBG1'
+    }]
+})
+
+
+// punto 4
+db.auth('cliente', 'cliente')
+
+db.createCollection('ciudad')
+db.createCollection('almacen')
+
+// punto 5
+// para este punto se hizo uso de mongo tools
+// los comando de importacion utilizados son los siguientes
+
+// mongoimport --jsonArray --host localhost --port 27017 --username Taller --authenticationDatabase test --db ADBG1 --collection ciudad --file data/ciudades.json
+// mongoimport --jsonArray --host localhost --port 27017 --username Taller --authenticationDatabase test --db ADBG1 --collection almacen --file data/almacenes.json
+
+// punto 6
+db.ciudad.insertMany([
+     {
+        nombre: 'Cucuta',
+        departamento: 'Norte de Santander',
+        codigo_postal : 540001,
+        extension : 10000,
+        sitios_interes: [
+            'Ventura plaza',
+            'Museo casa natal'
+        ]
+    },
+    {
+        nombre: 'Sincelejo',
+        departamento: 'Sucre',
+        codigo_postal : 250251,
+        extension : 7000,
+        sitios_interes: [
+            'Plaza cultural Majagual',
+            'Museo Zenú'
+        ]
+    }
+])
+
+db.almacen.insertMany([
+    {
+        nombre: 'Almacén K',
+        direccion: {
+            barrio: 'Barrio K',
+            nomenclatura: 'Carrera',
+            numero: 87
+        },
+        ubicacion: ObjectId("62c310b69007017758c95250"),
+        capacidad_bodegas: 18
+    },
+    {
+        nombre: 'Almacén M',
+        direccion: {
+            barrio: 'Barrio M',
+            nomenclatura: 'Calle',
+            numero: 98
+        },
+        ubicacion: ObjectId("62c310b69007017758c95251"),
+        capacidad_bodegas: 23
+    },
+    {
+        nombre: 'Almacén N',
+        direccion: {
+            barrio: 'Barrio N',
+            nomenclatura: 'Transversal',
+            numero: 15
+        },
+        ubicacion: ObjectId("62c310b69007017758c95251"),
+        capacidad_bodegas: 30
+    }
+])
+
+
+// punto 7
+db.createCollection('sucesiones')
+var insert_before = db.sucesiones.insertOne({
+    suma: 5,
+    resta: 1000,
+    multiplicacion: 5000
+}).insertedId
+
+for (var i = 0; i < 10; i++) {
+    var cursor = db.sucesiones.findOne({'_id': insert_before})
+
+    var sum = cursor.suma + 3
+    var subtract = cursor.resta - 4
+
+    insert_before = db.sucesiones.insertOne({
+        suma: sum,
+        resta: subtract,
+        multiplicacion: sum * subtract
+    }).insertedId
+}
+
+db.sucesiones.find({}).pretty()
+
+// punto 8 listar los almacenes cuya dirección contenga avenida
+db.almacen.find (
+    {'direccion.nomenclatura': 'Avenida'},
+    {nombre: 1, 'direccion.nomenclatura': 1}
+)
+
+// punto 9 listar la ciudades cuya extensión esté entre 5000 y 10000
+db.ciudad.find (
+    {$and: [
+        {extension: {$gte: 5000}},
+        {extension: {$lte: 10000}}
+    ]},
+    {nombre: 1, extension: 1}
+).pretty()
+
+
+// punto 10
+db.ciudad.updateOne(
+    {nombre: 'Florencia'},
+    {$set: {nombre: 'Florencia-Caquetá'}}
+)
+
+// punto 11 editar un documento de la colección ciudad y agregar dos sitios más de interés
+db.ciudad.updateOne(
+    {nombre: 'Barranquilla'},
+    {$addToSet: {sitios_interes: {$each: [
+        'CC Portal del prado',
+        'Plaza de la paz'
+    ]}}}
+)
+
+// punto 12 listar los documentos de almacen que sean de la misma ciudad
+db.ciudad.aggregate([{
+    $lookup: {
+      from: 'almacen',
+      localField: '_id',
+      foreignField: 'ubicacion',
+      as: 'almacenes'
+    }
+}]).pretty()
+
+
+// punto 13 Listar las ciudades y en el campo extensión incrementarlo en 5000 más.
+db.ciudad.find({}, {nombre: 1, extension: {$sum: ['$extension', 5000]}})
+
+
+// punto 14 listar el numero de almacenes por ciudad, ordenado por cantidad descendente
+db.ciudad.aggregate([
+    { $lookup: {
+        from: 'almacen',
+        localField: '_id',
+        foreignField: 'ubicacion',
+        as: 'almacenes'
+    }},
+    { $project: {
+        nombre: 1,
+        almacenes: '$almacenes.nombre',
+        cantidadAlmacenes: { $size: '$almacenes' }
+    }},
+    { $sort: { cantidadAlmacenes: -1 } }
+]).pretty()
+
+
+// punto 15 Borrar los documentos de la colección almacen
+db.almacen.deleteMany({})
+
+
+// punto 16
+use personas
+
+db.createCollection("doc_persona")
+
+// punto 17
+use migracion
+
+db.createCollection('persona')
+db.createCollection('libro')

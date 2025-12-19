@@ -1,0 +1,122 @@
+[
+    {
+        "nombre": "Almacén A",
+        "direccion": {
+            "barrio": "Barrio A",
+            "nomenclatura": "Calle",
+            "numero": 3
+        },
+        "ubicacion": {
+            "$oid": "62c304d59007017758c9523b"
+        },
+        "capacidad_bodegas": 4
+    },
+    {
+        "nombre": "Almacén B",
+        "direccion": {
+            "barrio": "Barrio B",
+            "nomenclatura": "Carrera",
+            "numero": 5
+        },
+        "ubicacion": {
+            "$oid": "62c304d59007017758c9523c"
+        },
+        "capacidad_bodegas": 10
+    },
+    {
+        "nombre": "Almacén C",
+        "direccion": {
+            "barrio": "Barrio C",
+            "nomenclatura": "Carrera",
+            "numero": 2
+        },
+        "ubicacion": {
+            "$oid": "62c304d59007017758c9523d"
+        },
+        "capacidad_bodegas": 8
+    },
+    {
+        "nombre": "Almacén D",
+        "direccion": {
+            "barrio": "Barrio D",
+            "nomenclatura": "Diagonal",
+            "numero": 40
+        },
+        "ubicacion": {
+            "$oid": "62c304d59007017758c9523e"
+        },
+        "capacidad_bodegas": 10
+    },
+    {
+        "nombre": "Almacén E",
+        "direccion": {
+            "barrio": "Barrio E",
+            "nomenclatura": "Avenida",
+            "numero": 2
+        },
+        "ubicacion": {
+            "$oid": "62c304d59007017758c9523f"
+        },
+        "capacidad_bodegas": 25
+    },
+    {
+        "nombre": "Almacén F",
+        "direccion": {
+            "barrio": "Barrio F",
+            "nomenclatura": "Carrera",
+            "numero": 43
+        },
+        "ubicacion": {
+            "$oid": "62c304d59007017758c95240"
+        },
+        "capacidad_bodegas": 14
+    },
+    {
+        "nombre": "Almacén G",
+        "direccion": {
+            "barrio": "Barrio G",
+            "nomenclatura": "Calle",
+            "numero": 139
+        },
+        "ubicacion": {
+            "$oid": "62c304d59007017758c95241"
+        },
+        "capacidad_bodegas": 30
+    },
+    {
+        "nombre": "Almacén H",
+        "direccion": {
+            "barrio": "Barrio H",
+            "nomenclatura": "Avenida",
+            "numero": 10
+        },
+        "ubicacion": {
+            "$oid": "62c304d59007017758c95242"
+        },
+        "capacidad_bodegas": 12
+    },
+    {
+        "nombre": "Almacén I",
+        "direccion": {
+            "barrio": "Barrio I",
+            "nomenclatura": "Avenida",
+            "numero": 7
+        },
+        "ubicacion": {
+            "$oid": "62c304d59007017758c95243"
+        },
+        "capacidad_bodegas": 30
+    },
+    {
+        "nombre": "Almacén J",
+        "direccion": {
+            "barrio": "Barrio J",
+            "nomenclatura": "Calle",
+            "numero": 76
+        },
+        "ubicacion": {
+            "$oid": "62c304d59007017758c95244"
+        },
+        "capacidad_bodegas": 8
+    }
+]

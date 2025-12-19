@@ -1,0 +1,102 @@
+[
+    {
+        "nombre": "Florencia",
+        "departamento": "Caquetá",
+        "codigo_postal": 180001,
+        "extension": 5000,
+        "sitios_interes": [
+            "CC Gran Plaza",
+            "Parque Santander"
+        ]
+    },
+    {
+        "nombre": "Barranquilla",
+        "departamento": "Atlántico",
+        "codigo_postal": 80001,
+        "extension": 6000,
+        "sitios_interes": [
+            "Malecón",
+            "Casa de cultura"
+        ]
+    },
+    {
+        "nombre": "Bogotá",
+        "departamento": "Cundinamarca",
+        "codigo_postal": 110111,
+        "extension": 4000,
+        "sitios_interes": [
+            "CC Las Américas",
+            "Plaza de bolivar"
+        ]
+    },
+    {
+        "nombre": "Medellín",
+        "departamento": "Antioquia",
+        "codigo_postal": 20481,
+        "extension": 2000,
+        "sitios_interes": [
+            "CC Medellín",
+            "Plaza de Botero"
+        ]
+    },
+    {
+        "nombre": "Cali",
+        "departamento": "Valle del Cauca",
+        "codigo_postal": 760000,
+        "extension": 10000,
+        "sitios_interes": [
+            "Cristo rey",
+            "Iglesia San Antonio"
+        ]
+    },
+    {
+        "nombre": "Cartagena",
+        "departamento": "Bolivar",
+        "codigo_postal": 13001,
+        "extension": 8000,
+        "sitios_interes": [
+            "Bocagrande",
+            "Ciudad amurallada"
+        ]
+    },
+    {
+        "nombre": "Santa Marta",
+        "departamento": "Magdalena",
+        "codigo_postal": 470001,
+        "extension": 6000,
+        "sitios_interes": [
+            "Pescaito",
+            "Malecón"
+        ]
+    },
+    {
+        "nombre": "Valledupar",
+        "departamento": "Cesar",
+        "codigo_postal": 200001,
+        "extension": 1000,
+        "sitios_interes": [
+            "Plaza Alfonzo López",
+            "Malecón"
+        ]
+    },
+    {
+        "nombre": "Riohacha",
+        "departamento": "Guajira",
+        "codigo_postal": 440001,
+        "extension": 6000,
+        "sitios_interes": [
+            "Plaza Padilla",
+            "Malecón"
+        ]
+    },
+    {
+        "nombre": "Montería",
+        "departamento": "Córdoba",
+        "codigo_postal": 230001,
+        "extension": 12000,
+        "sitios_interes": [
+            "Muelle turístico",
+            "Malecón"
+        ]
+    }
+]

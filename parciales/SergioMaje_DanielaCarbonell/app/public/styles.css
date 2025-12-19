@@ -1,0 +1,102 @@
+html {
+    font-size: 62.5%
+}
+
+body {
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+}
+
+.form-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
+    padding: 4rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 30px rgba(1, 1, 1, 0.6);
+}
+
+.form--title {
+    font: 600 20pt Roboto;
+    letter-spacing: 0.2rem;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    text-shadow: 0 .4rem .8rem rgba(0, 0, 0, 0.5);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.field__title {
+    font: 600 13pt Roboto;
+    letter-spacing: 0.12rem;
+    color: #34495e;
+}
+
+.field--icon {
+    font-size: 14pt;
+    color: #34495e;
+}
+
+.field--container {
+    flex: 1;
+    width: 30vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .8rem;
+    background-color: #ecf0f1;
+    padding: .4rem 1.6rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 4px 16px rgba(1, 1, 1, 0.6);
+}
+
+.field--container:focus {
+    border: 1px solid #7f8c8d;
+}
+
+.field__input {
+    flex: 1;
+    display: inline-block;
+    background-color: transparent;
+    border-color: transparent;
+    outline: 0;
+    font: 400 12pt Roboto;
+    caret-color: #34495e;
+    color: #34495e;
+}
+
+.form__submit {
+    flex: 1;
+    width: 100%;
+    font: 600 13pt Roboto;
+    letter-spacing: 0.2rem;
+    margin-top: 2rem;
+    color: #ecf0f1;
+    background-color: #d35400;
+    outline: 0;
+    border-color: transparent;
+    padding: .8rem 1.6rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 4px 16px rgba(1, 1, 1, 0.6);
+    text-shadow: 0 .4rem .8rem rgba(0, 0, 0, 0.5);
+}
